@@ -4,7 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.context.support.FileSystemXmlApplicationContext;
 import org.springframework.stereotype.Component;
+
 import us.codecraft.jobhunter.model.LieTouJobInfo;
 import us.codecraft.webmagic.Site;
 import us.codecraft.webmagic.model.OOSpider;
@@ -27,7 +29,8 @@ public class JobCrawler {
     }
 
     public static void main(String[] args) {
-        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("classpath:/spring/applicationContext*.xml");
+        //ApplicationContext applicationContext = new ClassPathXmlApplicationContext("classpath:/spring/applicationContext*.xml");
+        ApplicationContext applicationContext = new FileSystemXmlApplicationContext("src/main/resources/spring/applicationContext*.xml");
         final JobCrawler jobCrawler = applicationContext.getBean(JobCrawler.class);
         jobCrawler.crawl();
     }
